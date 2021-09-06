@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,11 @@ namespace GameWeb.Controllers
             return View();
         }
 
-        [Route("a-propos-de")]
+        [Route("a-propos-de", Name = "RouteAbout")]
         //[Route("about")]
         public IActionResult About()
         {
-         
+            
             return View();
         }
     }
