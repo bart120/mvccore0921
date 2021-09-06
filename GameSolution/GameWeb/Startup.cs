@@ -27,18 +27,21 @@ namespace GameWeb
                 app.UseDeveloperExceptionPage();
             }
 
-            
+
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapDefaultControllerRoute();
-               
+
                 /*endpoints.MapControllerRoute(
                     name: "RouteAbout",
                     pattern: "a-propos-de",
                     defaults: new { controller= "Home", action= "About" });*/
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                    name: "default",
