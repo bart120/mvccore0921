@@ -10,6 +10,15 @@ namespace GameWeb.Controllers
     {
         public IActionResult Index()
         {
+            
+            return View();
+        }
+
+        [Route("a-propos-de")]
+        //[Route("about")]
+        public IActionResult About()
+        {
+         
             return View();
         }
     }
