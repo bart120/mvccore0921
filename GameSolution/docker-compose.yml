@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  gameweb:
+    image: ${DOCKER_REGISTRY-}gameweb
+    build:
+      context: .
+      dockerfile: GameWeb/Dockerfile
