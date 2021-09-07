@@ -2,6 +2,7 @@
 using GameApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,9 +60,9 @@ namespace GameApi.Controllers
         [ProducesResponseType(typeof(Game), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         //[Consumes("text/xml")]
-        public async Task<ActionResult<Game>> GetGameByIdAsync([FromRoute]int id)
+        public async Task<ActionResult<Object>> GetGameByIdAsync([FromRoute]int id)
         {
-            var game = await _context.Games.FindAsync(id);
+            var game = await _context.Games.Include(x => x.PlatformGames).ThenInclude(x => x.Platform).Select(x => new { x.ID, x.Name, x.Description, Platforms = x.PlatformGames.Select(y => new { y.PlatformID, y.Platform.Name }) }).SingleOrDefaultAsync(x => x.ID == id);
             if(game != null)
             {
                 //return new ContentResult{ Content = "", ContentType = "text/xml", StatusCode= (int)HttpStatusCode.OK };
@@ -104,5 +105,7 @@ namespace GameApi.Controllers
                 trans.Rollback();
             }*/
         }
+
+
     }
 }

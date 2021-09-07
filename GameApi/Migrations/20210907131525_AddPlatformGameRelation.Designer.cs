@@ -3,14 +3,16 @@ using GameApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GameApi.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    partial class GameDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210907131525_AddPlatformGameRelation")]
+    partial class AddPlatformGameRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,48 +65,34 @@ namespace GameApi.Migrations
                     b.ToTable("Platforms");
                 });
 
-            modelBuilder.Entity("GameApi.Models.PlatformGame", b =>
+            modelBuilder.Entity("GamePlatform", b =>
                 {
-                    b.Property<int>("GameID")
+                    b.Property<int>("GamesID")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlatformID")
+                    b.Property<int>("PlatformsID")
                         .HasColumnType("int");
 
-                    b.HasKey("GameID", "PlatformID");
+                    b.HasKey("GamesID", "PlatformsID");
 
-                    b.HasIndex("PlatformID");
+                    b.HasIndex("PlatformsID");
 
-                    b.ToTable("PlatformGames");
+                    b.ToTable("GamePlatform");
                 });
 
-            modelBuilder.Entity("GameApi.Models.PlatformGame", b =>
+            modelBuilder.Entity("GamePlatform", b =>
                 {
-                    b.HasOne("GameApi.Models.Game", "Game")
-                        .WithMany("PlatformGames")
-                        .HasForeignKey("GameID")
+                    b.HasOne("GameApi.Models.Game", null)
+                        .WithMany()
+                        .HasForeignKey("GamesID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GameApi.Models.Platform", "Platform")
-                        .WithMany("PlatformGames")
-                        .HasForeignKey("PlatformID")
+                    b.HasOne("GameApi.Models.Platform", null)
+                        .WithMany()
+                        .HasForeignKey("PlatformsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("Platform");
-                });
-
-            modelBuilder.Entity("GameApi.Models.Game", b =>
-                {
-                    b.Navigation("PlatformGames");
-                });
-
-            modelBuilder.Entity("GameApi.Models.Platform", b =>
-                {
-                    b.Navigation("PlatformGames");
                 });
 #pragma warning restore 612, 618
         }

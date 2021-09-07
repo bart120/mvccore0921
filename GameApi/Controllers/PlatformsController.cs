@@ -78,19 +78,10 @@ namespace GameApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Platform>> PostPlatform(Platform platform)
         {
-            try
-            {
-                _context.Platforms.Add(platform);
-                await _context.SaveChangesAsync();
+            _context.Platforms.Add(platform);
+            await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetPlatform", new { id = platform.ID }, platform);
-            }catch(DbUpdateException e)
-            {
-                ModelState.AddModelError("Name", $"Le champ name ne peut pas contenir plusieurs fois la valeur {platform.Name}");
-                return BadRequest(ModelState);
-            }
-            
-            
+            return CreatedAtAction("GetPlatform", new { id = platform.ID }, platform);
         }
 
         // DELETE: api/Platforms/5
