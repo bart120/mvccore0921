@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace GameApi.Models
 {
-    public class Game
+    public class Platform
     {
-        //[Key]
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Champ obligatoire")]
-        [StringLength(50, ErrorMessage = "Maximun {1} caractères")]
+        [StringLength(50)]
+        [Required]
         public string Name { get; set; }
 
         [StringLength(250)]
         public string Description { get; set; }
-
 
     }
 }

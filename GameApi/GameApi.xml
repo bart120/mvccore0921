@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameApi</name>
+    </assembly>
+    <members>
+        <member name="T:GameApi.Controllers.GamesController">
+            <summary>
+            API for games
+            </summary>
+        </member>
+        <member name="M:GameApi.Controllers.GamesController.GetGameByIdAsync(System.Int32)">
+            <summary>
+            Get a game by id
+            </summary>
+            <param name="id">key of the game</param>
+            <returns>A game</returns>
+            <example>https://sample.com/api/games/5</example>
+            <seealso cref="M:GameApi.Controllers.GamesController.GetGames"/>
+        </member>
+        <member name="M:GameApi.Controllers.GamesController.PostGame(GameApi.Models.Game)">
+            <summary>
+            Insert a game in DB
+            </summary>
+            <param name="game"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

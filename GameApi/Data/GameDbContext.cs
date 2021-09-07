@@ -13,6 +13,13 @@ namespace GameApi.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Platform>(p => p.HasIndex(x => x.Name).IsUnique());
+        }
+
         public DbSet<Game> Games { get; set; }
+
+        public DbSet<Platform> Platforms { get; set; }
     }
 }
