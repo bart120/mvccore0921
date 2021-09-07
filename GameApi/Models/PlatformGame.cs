@@ -11,13 +11,13 @@ namespace GameApi.Models
     {
      
         public int PlatformID { get; set; }
-        //[ForeignKey("PlatformID")]
+        [ForeignKey("PlatformID")]
         public Platform Platform { get; set; }
 
 
      
         public int GameID { get; set; }
-        //[ForeignKey("GameID")]
+        [ForeignKey("GameID")]
         public Game Game { get; set; }
 
     }

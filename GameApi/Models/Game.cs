@@ -18,7 +18,7 @@ namespace GameApi.Models
         [StringLength(250)]
         public string Description { get; set; }
 
-        public ICollection<PlatformGame> PlatformGames { get; set; }
+       //public ICollection<PlatformGame> PlatformGames { get; set; }
 
 
     }

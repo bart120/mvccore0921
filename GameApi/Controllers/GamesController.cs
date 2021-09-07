@@ -62,8 +62,9 @@ namespace GameApi.Controllers
         //[Consumes("text/xml")]
         public async Task<ActionResult<Object>> GetGameByIdAsync([FromRoute]int id)
         {
-            var game = await _context.Games.Include(x => x.PlatformGames).ThenInclude(x => x.Platform).Select(x => new { x.ID, x.Name, x.Description, Platforms = x.PlatformGames.Select(y => new { y.PlatformID, y.Platform.Name }) }).SingleOrDefaultAsync(x => x.ID == id);
-            if(game != null)
+            //var game = await _context.Games.Include(x => x.PlatformGames).ThenInclude(x => x.Platform).Select(x => new { x.ID, x.Name, x.Description, Platforms = x.PlatformGames.Select(y => new { y.PlatformID, y.Platform.Name }) }).SingleOrDefaultAsync(x => x.ID == id);
+            var game = await _context.Games.FindAsync(id);
+            if (game != null)
             {
                 //return new ContentResult{ Content = "", ContentType = "text/xml", StatusCode= (int)HttpStatusCode.OK };
                 return game;
@@ -71,6 +72,25 @@ namespace GameApi.Controllers
             else
             {
                 return NotFound("No game for this ID");
+            }
+
+        }
+
+        [HttpGet("{id:int}/platforms")]
+        [ProducesResponseType(typeof(Game), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<IEnumerable<Platform>>> GetPLatformsByGameIdAsync([FromRoute] int id)
+        {
+            //var game = await _context.Games.Include(x => x.PlatformGames).ThenInclude(x => x.Platform).Select(x => new { x.ID, x.Name, x.Description, Platforms = x.PlatformGames.Select(y => new { y.PlatformID, y.Platform.Name }) }).SingleOrDefaultAsync(x => x.ID == id);
+            var platforms = await _context.PlatformGames.Include(x => x.Platform).Where(x => x.GameID == id).Select(x => x.Platform).ToListAsync();
+            if (platforms != null && platforms.Count() > 0)
+            {
+                //return new ContentResult{ Content = "", ContentType = "text/xml", StatusCode= (int)HttpStatusCode.OK };
+                return platforms;
+            }
+            else
+            {
+                return NotFound("No platforms for this game");
             }
 
         }
