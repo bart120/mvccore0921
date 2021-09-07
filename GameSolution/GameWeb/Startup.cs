@@ -27,7 +27,7 @@ namespace GameWeb
                 app.UseDeveloperExceptionPage();
             }
 
-
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
