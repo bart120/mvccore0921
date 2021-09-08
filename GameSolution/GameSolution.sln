@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameWeb", "GameWeb\GameWeb.
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2CF0E68D-E8E4-4956-8598-07AB58CB593F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameApi", "..\GameApi\GameApi.csproj", "{C3453302-05B4-48C6-8DBC-1AFAACE80FBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameApi", "..\GameApi\GameApi.csproj", "{C3453302-05B4-48C6-8DBC-1AFAACE80FBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLib", "..\GameLib\GameLib.csproj", "{D6E2BE4C-A83E-4F88-A3AC-10B09ED1A9F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{C3453302-05B4-48C6-8DBC-1AFAACE80FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3453302-05B4-48C6-8DBC-1AFAACE80FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3453302-05B4-48C6-8DBC-1AFAACE80FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6E2BE4C-A83E-4F88-A3AC-10B09ED1A9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6E2BE4C-A83E-4F88-A3AC-10B09ED1A9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6E2BE4C-A83E-4F88-A3AC-10B09ED1A9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6E2BE4C-A83E-4F88-A3AC-10B09ED1A9F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B67E2D96-2355-4584-B89D-4CDA2D29B766} = {0E103894-DCBE-4925-8B3C-68ECF785ECFB}
 		{C3453302-05B4-48C6-8DBC-1AFAACE80FBB} = {0421DBB2-F757-42B7-9328-A0678E13A45E}
+		{D6E2BE4C-A83E-4F88-A3AC-10B09ED1A9F4} = {0E103894-DCBE-4925-8B3C-68ECF785ECFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0CCDF088-A1A3-4C0B-A302-2DEF20A79813}

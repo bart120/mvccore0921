@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GameLib.Core.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,17 @@ namespace GameWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IPlatformService _platformService;
+
+        public HomeController(IPlatformService platformService)
         {
-            
+            _platformService = platformService;
+        }
+
+
+        public async Task<IActionResult> Index()
+        {
+            var platforms = await _platformService.GetPlatformsAsync();
             return View();
         }
 
