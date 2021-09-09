@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GameLib.Core.Services;
+using GameLib;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,7 +19,8 @@ namespace GameWeb
         {
             services.AddControllersWithViews();
             services.AddHttpClient();
-            services.AddTransient<IPlatformService, PlatformService>();
+            //GameExtensions.AddGameServices(services);
+            services.AddGameServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +46,11 @@ namespace GameWeb
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
+                /*endpoints.MapControllerRoute(
+                    name: "BackGames",
+                    pattern: "{area:exists}/games/{action=Index}/{id?}",
+                    defaults: new {controller = "BackGames"});*/
 
                 endpoints.MapControllerRoute(
                    name: "default",

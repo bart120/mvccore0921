@@ -11,5 +11,9 @@ namespace GameLib.Core.Services
     {
 
         Task<IEnumerable<Platform>> GetPlatformsAsync();
+
+        Task<Platform> GetPlatformByIdAsync(int id);
+
+        Task<IEnumerable<Game>> GetGameByPlatformsAsync(int id);
     }
 }

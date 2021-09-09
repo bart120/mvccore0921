@@ -1,2 +1,23 @@
-﻿
-    <h1>Bonjour</h1>
+﻿@model HomeIndexViewModel
+<h1>Accueil</h1>
+
+<div class="row">
+    <div class="col-6">
+        <h2>Les plateformes</h2>
+        <div class="list-group">
+            @foreach (var p in Model.Platforms)
+            {
+                <a href="@Url.RouteUrl("RoutePlatform", new { id=p.ID, name = p.Name })" class="list-group-item list-group-item-action">@p.Name</a>
+            }
+        </div>
+    </div>
+    <div class="col-6">
+        <h2>LEs jeux</h2>
+        <ul class="list-group">
+            @foreach (var g in Model.Games)
+            {
+                <li class="list-group-item">@g.Name</li>
+            }
+        </ul>
+    </div>
+</div>

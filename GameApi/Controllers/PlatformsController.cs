@@ -42,6 +42,13 @@ namespace GameApi.Controllers
             return platform;
         }
 
+        // GET: api/Platforms/5/games
+        [HttpGet("{id}/games")]
+        public async Task<ActionResult<IEnumerable<Game>>> GetGamesByPlatform(int id)
+        {
+            return await _context.PlatformGames.Include(x=> x.Game).Where(x => x.PlatformID == id).Select(x => x.Game).ToListAsync();
+        }
+
         // PUT: api/Platforms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

@@ -19,6 +19,22 @@ namespace GameLib.Core.Services
             _httpClient = httpClient;
         }
 
+        public async Task<IEnumerable<Game>> GetGameByPlatformsAsync(int id)
+        {
+            var responseString = await _httpClient.GetStringAsync($"{_remoteUrl}/{id}/games");
+            var result = JsonConvert.DeserializeObject<List<Game>>(responseString);
+
+            return result;
+        }
+
+        public async Task<Platform> GetPlatformByIdAsync(int id)
+        {
+            var responseString = await _httpClient.GetStringAsync($"{_remoteUrl}/{id}");
+            var result = JsonConvert.DeserializeObject<Platform>(responseString);
+
+            return result;
+        }
+
         public async Task<IEnumerable<Platform>> GetPlatformsAsync()
         {
             /*var response = await _httpClient.GetAsync(_remoteUrl);
