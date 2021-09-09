@@ -1,6 +1,7 @@
 ﻿using GameLib.Core.Models;
 using GameLib.Core.Services;
 using GameWeb.Areas.Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ namespace GameWeb.Areas.Backend.Controllers
 {
     [Area("Backend")]
     [Route("[area]/games/[action]")]
+    [Authorize]
 
     public class BackGamesController : Controller
     {
@@ -41,6 +43,7 @@ namespace GameWeb.Areas.Backend.Controllers
         }
 
         // GET: BackGamesController/Create
+        [Authorize(Roles = "ADMIN,USER")]
         public async Task<ActionResult> Create()
         {
             ViewBag.Platforms =  await  _platformService.GetPlatformsAsync();
@@ -50,6 +53,7 @@ namespace GameWeb.Areas.Backend.Controllers
         // POST: BackGamesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> Create(BackGamesCreateViewModel model)
         {
             if(ModelState.IsValid)

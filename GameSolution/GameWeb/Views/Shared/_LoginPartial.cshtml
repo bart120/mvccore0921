@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<WebUser> _signInManager
+@inject UserManager<WebUser> _userManager
+
+@if (_signInManager.IsSignedIn(User))
+{
+    
+    <p>Bonjour @User.Identity.Name</p>
+
+}
+else
+{
+    <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Se connecter</a>
+}
